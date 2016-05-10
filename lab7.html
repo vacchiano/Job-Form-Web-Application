@@ -1,0 +1,115 @@
+<html>
+
+<head>
+	<title> </title>
+
+
+
+	<style>
+	textarea:required:invalid, input:required:invalid {
+  	background-color: lightyellow;
+	}
+
+	</style>
+
+<script type="text/javascript">
+
+function getTime() {
+	var d = new Date();
+	var dHour = d.getHours();
+	if (dHour <= 12) {
+		document.getElementById("daytime").innerHTML = "Good Morning";
+		
+		var fileref=document.createElement("link")
+  		fileref.setAttribute("rel", "stylesheet")
+  		fileref.setAttribute("type", "text/css")
+  		fileref.setAttribute("href", 'lab7_morning.css')
+  		document.getElementsByTagName("head")[0].appendChild(fileref)
+  		loadjscssfile("lab7_morning.css", "css")
+
+	}
+
+	if (dHour <= 16 && dHour > 12) {
+		document.getElementById("daytime").innerHTML = "Good Afternoon";
+		
+		var fileref=document.createElement("link")
+  		fileref.setAttribute("rel", "stylesheet")
+  		fileref.setAttribute("type", "text/css")
+  		fileref.setAttribute("href", 'lab7_mid.css')
+  		document.getElementsByTagName("head")[0].appendChild(fileref)
+  		loadjscssfile("lab7_mid.css", "css")
+
+	}
+
+	if (dHour <= 23 && dHour > 16) {
+		document.getElementById("daytime").innerHTML = "Good Evening";
+		
+		var fileref=document.createElement("link")
+  		fileref.setAttribute("rel", "stylesheet")
+  		fileref.setAttribute("type", "text/css")
+  		fileref.setAttribute("href", 'lab7_night.css')
+  		document.getElementsByTagName("head")[0].appendChild(fileref)
+  		loadjscssfile("lab7_night.css", "css")
+
+	}
+}
+
+
+</script>
+
+
+</head>
+
+<body onload="getTime()">
+
+<h1>Zoo Keeper Application Form</h1>
+
+<h2 id="daytime"> </h2>
+
+<form id="zookeeperform" action="lab7_form.php" method="POST" onsubmit="return validateform()">
+	<p><i>Please complete the form.  Mandatory fields are marked with a </i><em>*</em></p>
+	<fieldset>
+		<legend>Contact Details</legend>
+			<label for="name">Name <em>*</em></label>
+			<input id="name" name="name" placeholder="John Doe" autofocus required><br>
+			<label for="telephone">Telephone</label>
+			<input id="telephone" name="telephone" placeholder ="xxx xxx-xxxx"><br>
+			<label for="email">Email<em>*</em></label>
+			<input id="email" type="email" name="email" placeholder="me@gmail.com">
+	</fieldset>
+	<fieldset>
+		<legend>Personal Information</legend>
+
+			<label for="birthDate">Birth Date <em>*</em></label>
+			<input id="birthDate" type="date" name="birthDate" required><br>
+
+			<label for="age">Age <em>*</em></label>
+			<input id="age" type="number" name="age" min="0" max="120" step="1" required><br>
+
+			<label for="gender">Gender</label>
+			<select id="gender" name="gender">
+				<option value="female">Female</option>
+				<option value="male">Male</option>
+			</select><br>
+			<label for="comments">Why did you want to be a zoo-keeper? <em>*</em></label>
+			<textarea id="comments" oninput="validateComments(this)" name="comments" required></textarea>
+
+	</fieldset>
+
+	<fieldset>
+		<legend>Pick Your Favorite Animal</legend>
+		<label for="zebra"><input id="zebra" type="checkbox"> Zebra</label>
+    	<label for="cat"><input id="cat" type="checkbox"> Cat</label>
+    	<label for="anaconda"><input id="anaconda" type="checkbox"> Anaconda</label>
+    	<label for="human"><input id="human" type="checkbox"> Human</label>
+    	<label for="elephant"><input id="elephant" type="checkbox"> Elephant</label>
+    	<label for="wildebeest"><input id="wildebeest" type="checkbox"> Wildebeest</label>
+   		<label for="pigeon"><input id="pigeon" type="checkbox"> Pigeon</label>
+    	<label for="crab"><input id="crab" type="checkbox"> Crab</label>
+  </fieldset>
+
+  <p><input type="submit" value="Submit Application"></p>
+
+</form>
+</body>
+</html>
